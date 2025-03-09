@@ -104,10 +104,6 @@ function App() {
         <Sidebar />
 
         <main>
-          {/* <Post />
-
-          <Post /> */}
-
           {posts.map((post) => {
             return (
               <Post

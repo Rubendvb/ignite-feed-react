@@ -47,6 +47,15 @@ export function Post({ author, content, publishedAt }: AuthorProps) {
   function handleNewCommentChange(e: ChangeEvent<HTMLTextAreaElement>) {
     setNewCommentText(e.target.value)
   }
+
+  function deleteComment(commentToDelete: string) {
+    const commentsWithoutDeletedOne = comments.filter(
+      (comment) => comment !== commentToDelete
+    )
+
+    setComments(commentsWithoutDeletedOne)
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -92,13 +101,19 @@ export function Post({ author, content, publishedAt }: AuthorProps) {
         ></textarea>
 
         <footer>
-          <button type="submit">Publicar </button>
+          <button type="submit">Publicar</button>
         </footer>
       </form>
 
       <div className={styles.commentList}>
         {comments.map((comment) => {
-          return <Comment key={comment} content={comment} />
+          return (
+            <Comment
+              key={comment}
+              content={comment}
+              onDeleteComment={deleteComment}
+            />
+          )
         })}
       </div>
     </article>

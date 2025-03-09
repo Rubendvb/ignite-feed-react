@@ -4,9 +4,14 @@ import Avatar from '../Avatar'
 
 interface CommentProps {
   content: string
+  onDeleteComment: (comment: string) => void
 }
 
-export default function Comment({ content }: CommentProps) {
+export default function Comment({ content, onDeleteComment }: CommentProps) {
+  function handleDeleteComment() {
+    onDeleteComment(content)
+  }
+
   return (
     <div className={styles.comment}>
       <Avatar
@@ -24,7 +29,7 @@ export default function Comment({ content }: CommentProps) {
               </time>
             </div>
 
-            <button title="Deletar comentário">
+            <button title="Deletar comentário" onClick={handleDeleteComment}>
               <Trash size={24} />
             </button>
           </header>
